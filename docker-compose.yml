@@ -35,6 +35,7 @@ services:
     image: nginx:latest
     restart: unless-stopped
     
+
   #pgsql:
   #  image: postgres:9.5
   #  environment:

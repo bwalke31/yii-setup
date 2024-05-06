@@ -1,7 +1,7 @@
 <?php
 
 namespace frontend\controllers;
-
+use yii\filters\AccessControl;
 use frontend\models\Country;
 use frontend\models\CountrySearch;
 use yii\web\Controller;
@@ -21,6 +21,17 @@ class CountryController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                'class' => AccessControl::class,
+                'only' => ['create', 'read', 'update', 'delete'],
+                'rules' => [
+                    [
+                        'actions' => ['create', 'read', 'update', 'delete'],
+                        'allow' => false,
+                        'roles' => ['?'],
+                    ],
+                ],
+            ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
